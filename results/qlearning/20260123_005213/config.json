@@ -1,0 +1,17 @@
+{
+  "alpha": 0.1,
+  "gamma": 0.9,
+  "epsilon": 0.05,
+  "epsilon_decay": 0.99,
+  "epsilon_min": 0.01,
+  "episodes": 200,
+  "n_storage": 8,
+  "n_price": 4,
+  "n_hour_period": 5,
+  "n_weekend": 2,
+  "n_seasons": 4,
+  "n_actions": 3,
+  "seed": null,
+  "track_visits": true,
+  "label": ""
+}
