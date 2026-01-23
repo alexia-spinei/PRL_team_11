@@ -5,8 +5,8 @@
   "epsilon_decay": 0.99,
   "epsilon_min": 0.01,
   "episodes": 200,
-  "n_storage": 6,
-  "n_price": 6,
+  "n_storage": 8,
+  "n_price": 4,
   "seed": 42,
   "track_visits": true,
   "label": "default"
