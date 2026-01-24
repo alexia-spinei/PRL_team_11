@@ -16,9 +16,9 @@ class DamConfig:
     hour_period: np.ndarray  # 0-4: Night/MorningRush/Midday/EveningPeak/LateNight
     is_weekend: np.ndarray  # 0 or 1
     season: np.ndarray  # 0-3: Winter/Spring/Summer/Fall
-    Wmax: float = 100_000.0
-    Vmax: float = 18_000.0
-    W_init: float = 50_000.0
+    Wmax: float = 100000.0
+    Vmax: float = 18000.0
+    W_init: float = 50000.0
     g: float = 9.81
     rho: float = 1000.0
     h: float = 30.0
@@ -88,16 +88,18 @@ class DamEnvGym(gym.Env):
 
         E_pot = self._potential_energy_mwh(V)
 
-        if action == 1 and V > 0:
+        # removed V > 0 condition because it doesn't change outcome
+        if action == 1:  # sell
             reward = price * (self.cfg.eta_turbine * E_pot)
             self.W_t -= V
-        elif action == 2 and V > 0:
+        elif action == 2:  # buy
             reward = -price * (E_pot / self.cfg.eta_pump)
             self.W_t += V
         else:
             reward = 0.0
 
         self.pnl += reward
+
         self.t += 1
 
         terminated = self.t >= len(self.cfg.prices)
