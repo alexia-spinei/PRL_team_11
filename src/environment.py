@@ -16,6 +16,7 @@ class DamConfig:
     hour_period: np.ndarray  # 0-4: Night/MorningRush/Midday/EveningPeak/LateNight
     is_weekend: np.ndarray  # 0 or 1
     season: np.ndarray  # 0-3: Winter/Spring/Summer/Fall
+    price_window: int = 168  # rolling window length for price normalization
     Wmax: float = 100000.0
     Vmax: float = 18000.0
     W_init: float = 50000.0
@@ -30,10 +31,54 @@ class DamConfig:
     price_bins: Optional[np.ndarray] = None
 
 
+class RollingPercentileNormalizer:
+    """Online rolling percentile rank normalizer for streaming prices."""
+    # example: it will return 0 when teh current price is smaller than all historical prices
+    #          and 1 when it is larger than all historical prices
+    #          for a window of prices no larger than the window size
+
+    def __init__(self, window: int):
+        if window <= 0:
+            raise ValueError("window must be positive")
+        self.window = int(window)
+        self._buffer = np.empty(self.window, dtype=np.float64)
+        self._count = 0
+        self._pos = 0
+
+    def reset(self) -> None:
+        self._count = 0
+        self._pos = 0
+
+    def update(self, value: float) -> float:
+        """Add value and return its percentile rank in the current window."""
+        if self._count < self.window:
+            self._buffer[self._count] = value
+            self._count += 1
+            window = self._buffer[:self._count]
+        else:
+            self._buffer[self._pos] = value
+            self._pos = (self._pos + 1) % self.window
+            window = self._buffer
+
+        n = window.size
+        # special case when this is the first value we normalize and there is no history yet
+        if n == 1:
+            return 0.5
+
+        less = np.count_nonzero(window < value)
+        equal = np.count_nonzero(window == value)
+        if less == 0:
+            return 0.0
+        if less + equal == n:
+            return 1.0
+
+        return (less + 0.5 * (equal - 1)) / (n - 1)
+
+
 class DamEnvGym(gym.Env):
     """Dam energy trading environment.
 
-    Observation: (storage_ratio, price, hour_period, is_weekend, season)
+    Observation: (storage_ratio, normalized_price, hour_period, is_weekend, season)
     Actions: 0=idle, 1=sell, 2=buy
     """
 
@@ -46,13 +91,16 @@ class DamEnvGym(gym.Env):
         # --- action & observation spaces ---
         self.action_space = spaces.Discrete(3)  # idle, sell, buy
 
-        # Observation: [storage_ratio, price, hour_period, is_weekend, season]
+        # Observation: [storage_ratio, normalized_price, hour_period, is_weekend, season]
         self.observation_space = spaces.Box(
-            low=np.array([0.0, -np.inf, 0, 0, 0], dtype=np.float32),
-            high=np.array([1.0, np.inf, 4, 1, 3], dtype=np.float32),
+            low=np.array([0.0, 0.0, 0, 0, 0], dtype=np.float32),
+            high=np.array([1.0, 1.0, 4, 1, 3], dtype=np.float32),
             dtype=np.float32,
         )
 
+        self._price_norm = RollingPercentileNormalizer(self.cfg.price_window)
+        self._norm_price = 0.0
+        self._norm_t = -1 # no normalization yet
         self.reset()
 
     def _potential_energy_mwh(self, volume_m3: float) -> float:
@@ -61,9 +109,12 @@ class DamEnvGym(gym.Env):
 
     def _observation(self):
         """Return current state as tuple for discretization."""
+        if self._norm_t != self.t:
+            self._norm_price = self._price_norm.update(self.cfg.prices[self.t])
+            self._norm_t = self.t
         return (
             self.W_t / self.cfg.Wmax,  # storage ratio (0-1)
-            self.cfg.prices[self.t],  # current price
+            self._norm_price,  # normalized price in [0, 1]
             self.cfg.hour_period[self.t],  # 0-4
             self.cfg.is_weekend[self.t],  # 0-1
             self.cfg.season[self.t],  # 0-3
@@ -74,6 +125,8 @@ class DamEnvGym(gym.Env):
         self.t = 0
         self.W_t = self.cfg.W_init
         self.pnl = 0.0
+        self._price_norm.reset()
+        self._norm_t = -1
         return self._observation(), {}
 
     def step(self, action: int):
@@ -114,7 +167,7 @@ class DamEnvGym(gym.Env):
         """Convert continuous observation to discrete state indices.
 
         Args:
-            obs: (storage_ratio, price, hour_period, is_weekend, season)
+            obs: (storage_ratio, normalized_price, hour_period, is_weekend, season)
 
         Returns:
             Tuple of discrete indices for Q-table indexing.

@@ -27,11 +27,12 @@ class QConfig:
     epsilon: float = 1.0
     epsilon_decay: float = 0.995
     epsilon_min: float = 0.01
-    episodes: int = 500
+    episodes: int = 2000
 
     # Discretization
     n_storage: int = 6
     n_price: int = 6
+    price_window: int = 168
 
     # Fixed by design
     n_hour_period: int = 5
@@ -103,13 +104,19 @@ def load_data(filename: str) -> dict:
     return precompute_features(price_df)
 
 
-def create_dam_config(features: dict, storage_bins=None, price_bins=None) -> DamConfig:
+def create_dam_config(
+    features: dict,
+    storage_bins=None,
+    price_bins=None,
+    price_window: int | None = None,
+) -> DamConfig:
     """Create DamConfig from precomputed features."""
     return DamConfig(
         prices=features["prices"],
         hour_period=features["hour_period"],
         is_weekend=features["is_weekend"],
         season=features["season"],
+        price_window=price_window if price_window is not None else DamConfig.price_window,
         storage_bins=storage_bins,
         price_bins=price_bins,
     )
@@ -193,7 +200,12 @@ def train_q_learning(train_features: dict, config: QConfig) -> TrainingResult:
     epsilon = config.epsilon
 
     # creating the environment
-    dam_config = create_dam_config(train_features, storage_bins, price_bins)
+    dam_config = create_dam_config(
+        train_features,
+        storage_bins,
+        price_bins,
+        price_window=config.price_window,
+    )
     env = DamEnvGym(dam_config)
 
     for ep in range(config.episodes):
@@ -264,9 +276,15 @@ class EvalResult:
     action_counts: dict[str, int]
 
 
-def evaluate(Q: np.ndarray, val_features: dict, storage_bins, price_bins) -> EvalResult:
+def evaluate(
+    Q: np.ndarray,
+    val_features: dict,
+    storage_bins,
+    price_bins,
+    price_window: int,
+) -> EvalResult:
     """Evaluate Q-table on validation data."""
-    config = create_dam_config(val_features, storage_bins, price_bins)
+    config = create_dam_config(val_features, storage_bins, price_bins, price_window=price_window)
     env = DamEnvGym(config)
     obs, _ = env.reset()
     state = env.discretize(obs)
@@ -378,6 +396,7 @@ def parse_args() -> argparse.Namespace:
     # Discretization
     parser.add_argument("--n-storage", type=int, help="Number of storage bins")
     parser.add_argument("--n-price", type=int, help="Number of price bins")
+    parser.add_argument("--price-window", type=int, help="Rolling window length for price normalization")
 
     # Reward shaping
     parser.add_argument(
@@ -443,6 +462,8 @@ def build_config(args: argparse.Namespace) -> QConfig:
         config.n_storage = args.n_storage
     if args.n_price is not None:
         config.n_price = args.n_price
+    if args.price_window is not None:
+        config.price_window = args.price_window
     if args.seed is not None:
         config.seed = args.seed
     if args.no_track_visits:
@@ -485,7 +506,13 @@ def main():
         print_bin_coverage(coverage)
 
     print("\nEvaluating on validation set...")
-    eval_result = evaluate(result.Q, val_features, result.storage_bins, result.price_bins)
+    eval_result = evaluate(
+        result.Q,
+        val_features,
+        result.storage_bins,
+        result.price_bins,
+        price_window=config.price_window,
+    )
     print(f"Validation PnL: {eval_result.total_pnl:.2f}")
     print(f"Action counts: {eval_result.action_counts}")
 

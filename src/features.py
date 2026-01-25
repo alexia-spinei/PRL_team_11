@@ -79,12 +79,12 @@ def precompute_features(price_df: pd.DataFrame) -> dict:
     }
 
 
-def create_bins(training_prices: np.ndarray, n_storage: int = 8, n_price: int = 4):
+def create_bins(training_prices: np.ndarray, n_storage: int = 8, n_price: int = 6):
     """
-    Create discretization bins based on training data.
+    Create discretization bins.
 
     Args:
-        training_prices: array of all training prices
+        training_prices: array of all training prices (unused; kept for compatibility)
         n_storage: number of storage bins
         n_price: number of price bins
 
@@ -92,5 +92,5 @@ def create_bins(training_prices: np.ndarray, n_storage: int = 8, n_price: int = 
         storage_bins, price_bins: arrays of bin edges
     """
     storage_bins = np.linspace(0.0, 1.0, n_storage + 1)
-    price_bins = np.quantile(training_prices, np.linspace(0, 1, n_price + 1))
+    price_bins = np.linspace(0.0, 1.0, n_price + 1)
     return storage_bins, price_bins
