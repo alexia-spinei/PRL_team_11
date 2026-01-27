@@ -27,7 +27,7 @@ class QConfig:
     epsilon: float = 1.0
     epsilon_decay: float = 0.995
     epsilon_min: float = 0.01
-    episodes: int = 2000
+    episodes: int = 500
 
     # Discretization
     n_storage: int = 6
@@ -45,7 +45,10 @@ class QConfig:
     reward_shaping_enabled: bool = False
     peak_low_storage_penalty: float = -1.0  # penalty when in peak with low storage
     low_storage_threshold: int = 1  # storage bins <= this get penalty (0-indexed)
-    peak_periods: tuple[int, ...] = (2, 3)  # hour_period indices considered peak (2=Midday, 3=EveningPeak)
+    peak_periods: tuple[int, ...] = (
+        2,
+        3,
+    )  # hour_period indices considered peak (2=Midday, 3=EveningPeak)
 
     # Reproducibility & tracking
     seed: int | None = None
@@ -85,7 +88,13 @@ class QConfig:
         """Return human-readable description of reward shaping config."""
         if not self.reward_shaping_enabled:
             return "disabled"
-        period_names = {0: "Night", 1: "MorningRush", 2: "Midday", 3: "EveningPeak", 4: "LateNight"}
+        period_names = {
+            0: "Night",
+            1: "MorningRush",
+            2: "Midday",
+            3: "EveningPeak",
+            4: "LateNight",
+        }
         peak_names = [period_names.get(p, str(p)) for p in self.peak_periods]
         return (
             f"penalty={self.peak_low_storage_penalty} when storage_bin<={self.low_storage_threshold} "
@@ -116,13 +125,17 @@ def create_dam_config(
         hour_period=features["hour_period"],
         is_weekend=features["is_weekend"],
         season=features["season"],
-        price_window=price_window if price_window is not None else DamConfig.price_window,
+        price_window=price_window
+        if price_window is not None
+        else DamConfig.price_window,
         storage_bins=storage_bins,
         price_bins=price_bins,
     )
 
 
-def compute_bin_coverage(visit_counts: np.ndarray, well_visited_threshold: int = 100) -> dict:
+def compute_bin_coverage(
+    visit_counts: np.ndarray, well_visited_threshold: int = 100
+) -> dict:
     """
     Compute coverage statistics for full state space.
 
@@ -157,8 +170,10 @@ def print_bin_coverage(coverage: dict) -> None:
     print(f"  threshold for 'well-visited': {coverage['threshold']} visits\n")
 
     s = coverage["states"]
-    print(f"  states  : {s['visited']}/{s['total']} visited ({s['pct_visited']:5.1f}%), "
-          f"{s['well_visited']}/{s['total']} well-visited ({s['pct_well_visited']:5.1f}%)")
+    print(
+        f"  states  : {s['visited']}/{s['total']} visited ({s['pct_visited']:5.1f}%), "
+        f"{s['well_visited']}/{s['total']} well-visited ({s['pct_well_visited']:5.1f}%)"
+    )
 
 
 @dataclass
@@ -188,7 +203,9 @@ def train_q_learning(train_features: dict, config: QConfig) -> TrainingResult:
     Q = np.zeros(config.q_shape())
 
     # Initialize visit counts if tracking
-    visit_counts = np.zeros(config.q_shape(), dtype=np.int32) if config.track_visits else None
+    visit_counts = (
+        np.zeros(config.q_shape(), dtype=np.int32) if config.track_visits else None
+    )
 
     # Track metrics
     episode_rewards = []
@@ -218,7 +235,9 @@ def train_q_learning(train_features: dict, config: QConfig) -> TrainingResult:
         while not done:
             # Epsilon-greedy action selection
             if np.random.rand() < epsilon:
-                action = np.random.randint(config.n_actions)  # Use numpy RNG for reproducibility
+                action = np.random.randint(
+                    config.n_actions
+                )  # Use numpy RNG for reproducibility
             else:
                 action = np.argmax(Q[state])
 
@@ -231,11 +250,14 @@ def train_q_learning(train_features: dict, config: QConfig) -> TrainingResult:
             # Reward shaping: penalize being in peak period with low storage
             if config.reward_shaping_enabled:
                 storage_bin, _, hour_period, _, _ = state
-                if hour_period in config.peak_periods and storage_bin <= config.low_storage_threshold:
+                if (
+                    hour_period in config.peak_periods
+                    and storage_bin <= config.low_storage_threshold
+                ):
                     reward += config.peak_low_storage_penalty
 
             total_episode_reward += reward
-            done = terminated or truncated # truncated should not be here
+            done = terminated or truncated  # truncated should not be here
 
             if not done:
                 next_state = env.discretize(obs2)
@@ -256,7 +278,9 @@ def train_q_learning(train_features: dict, config: QConfig) -> TrainingResult:
         epsilon_history.append(epsilon)
 
         if (ep + 1) % 50 == 0:
-            print(f"Episode {ep + 1}/{config.episodes}, Reward: {total_episode_reward:.2f}, Epsilon: {epsilon:.4f}")
+            print(
+                f"Episode {ep + 1}/{config.episodes}, Reward: {total_episode_reward:.2f}, Epsilon: {epsilon:.4f}"
+            )
 
     return TrainingResult(
         Q=Q,
@@ -284,7 +308,9 @@ def evaluate(
     price_window: int,
 ) -> EvalResult:
     """Evaluate Q-table on validation data."""
-    config = create_dam_config(val_features, storage_bins, price_bins, price_window=price_window)
+    config = create_dam_config(
+        val_features, storage_bins, price_bins, price_window=price_window
+    )
     env = DamEnvGym(config)
     obs, _ = env.reset()
     state = env.discretize(obs)
@@ -304,7 +330,11 @@ def evaluate(
 
     return EvalResult(
         total_pnl=total_reward,
-        action_counts={"idle": action_counts[0], "sell": action_counts[1], "buy": action_counts[2]},
+        action_counts={
+            "idle": action_counts[0],
+            "sell": action_counts[1],
+            "buy": action_counts[2],
+        },
     )
 
 
@@ -389,14 +419,18 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--alpha", type=float, help="Learning rate")
     parser.add_argument("--gamma", type=float, help="Discount factor")
     parser.add_argument("--epsilon", type=float, help="Initial exploration rate")
-    parser.add_argument("--epsilon-decay", type=float, help="Epsilon decay rate per episode")
+    parser.add_argument(
+        "--epsilon-decay", type=float, help="Epsilon decay rate per episode"
+    )
     parser.add_argument("--epsilon-min", type=float, help="Minimum epsilon value")
     parser.add_argument("--episodes", type=int, help="Number of training episodes")
 
     # Discretization
     parser.add_argument("--n-storage", type=int, help="Number of storage bins")
     parser.add_argument("--n-price", type=int, help="Number of price bins")
-    parser.add_argument("--price-window", type=int, help="Rolling window length for price normalization")
+    parser.add_argument(
+        "--price-window", type=int, help="Rolling window length for price normalization"
+    )
 
     # Reward shaping
     parser.add_argument(
@@ -422,8 +456,15 @@ def parse_args() -> argparse.Namespace:
 
     # Reproducibility & tracking
     parser.add_argument("--seed", type=int, help="Random seed for reproducibility")
-    parser.add_argument("--no-track-visits", action="store_true", help="Disable visit count tracking")
-    parser.add_argument("--label", type=str, default="", help="Label for experiment (used in output directory name)")
+    parser.add_argument(
+        "--no-track-visits", action="store_true", help="Disable visit count tracking"
+    )
+    parser.add_argument(
+        "--label",
+        type=str,
+        default="",
+        help="Label for experiment (used in output directory name)",
+    )
 
     # Output control
     parser.add_argument(
@@ -479,7 +520,9 @@ def build_config(args: argparse.Namespace) -> QConfig:
     if args.low_storage_threshold is not None:
         config.low_storage_threshold = args.low_storage_threshold
     if args.peak_periods is not None:
-        config.peak_periods = tuple(int(p.strip()) for p in args.peak_periods.split(","))
+        config.peak_periods = tuple(
+            int(p.strip()) for p in args.peak_periods.split(",")
+        )
 
     return config
 
@@ -494,7 +537,9 @@ def main():
 
     print(f"Training: {len(train_features['prices'])} hours")
     print(f"Validation: {len(val_features['prices'])} hours")
-    print(f"\nConfig: alpha={config.alpha}, gamma={config.gamma}, epsilon={config.epsilon}")
+    print(
+        f"\nConfig: alpha={config.alpha}, gamma={config.gamma}, epsilon={config.epsilon}"
+    )
     print(f"        episodes={config.episodes}, seed={config.seed}")
     print(f"        Q-table shape: {config.q_shape()}")
     print(f"        reward_shaping: {config.reward_shaping_description()}")
@@ -502,7 +547,9 @@ def main():
     print("\nTraining Q-learning agent...")
     result = train_q_learning(train_features, config)
     if result.visit_counts is not None:
-        coverage = compute_bin_coverage(result.visit_counts, well_visited_threshold=1000)
+        coverage = compute_bin_coverage(
+            result.visit_counts, well_visited_threshold=1000
+        )
         print_bin_coverage(coverage)
 
     print("\nEvaluating on validation set...")
