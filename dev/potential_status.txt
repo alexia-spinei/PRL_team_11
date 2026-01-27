@@ -1,0 +1,18 @@
+Results: Scale=10, Episodes=160 (5 Seeds)
+
+Seed 1: 30,992 PnL | 1,582 buys
+Seed 2: 37,765 PnL | 1,680 buys
+Seed 3: 36,454 PnL | 1,468 buys
+Seed 4: 32,828 PnL | 1,355 buys
+Seed 5: 30,975 PnL | 1,447 buys
+
+Stats:
+Mean: 33,803 ± 2,813
+Range: 30,975 – 37,765
+Average: ~34k (85% of 40k target)
+Best: ~38k (95% of target)
+Worst: ~31k (77% of target)
+Variance: ±8% around mean
+
+Config:
+gamma=0.9, potential_scale=10.0, episodes=160, reward_shaping=True
