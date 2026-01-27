@@ -1,0 +1,13 @@
+{
+  "enabled": false,
+  "description": "disabled",
+  "parameters": {
+    "peak_low_storage_penalty": -1.0,
+    "low_storage_threshold": 1,
+    "peak_periods": [
+      2,
+      3
+    ]
+  },
+  "code_snippet": "# Reward shaping: penalize being in peak period with low storage\nif config.reward_shaping_enabled:\n    storage_bin, _, hour_period, _, _ = state\n    if hour_period in config.peak_periods and storage_bin <= config.low_storage_threshold:\n        reward += config.peak_low_storage_penalty"
+}
