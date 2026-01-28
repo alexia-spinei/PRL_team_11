@@ -1,0 +1,712 @@
+============================================================
+Q-Learning Reward Shaping Results Summary
+gamma=0.9, episodes=160, reward_shaping=True
+============================================================
+
+Results: Scale=0.5, Episodes=160 (10 Seeds)
+
+Seed 1: 23,490 PnL | 1,375 buys
+Seed 2: 28,406 PnL | 1,219 buys
+Seed 3: 30,159 PnL | 1,152 buys
+Seed 4: 32,333 PnL | 1,226 buys
+Seed 5: 29,893 PnL | 1,307 buys
+Seed 6: 28,911 PnL | 1,155 buys
+Seed 7: 30,959 PnL | 1,382 buys
+Seed 8: 32,039 PnL | 1,553 buys
+Seed 9: 28,079 PnL | 1,315 buys
+Seed 10: 32,211 PnL | 1,442 buys
+
+Stats:
+Mean: 29,648 ± 2,530
+Range: 23,490 – 32,333
+Average: ~30k (74% of 40k target)
+Best: ~32k (81% of target)
+Worst: ~23k (59% of target)
+Variance: ±9% around mean
+
+Config:
+gamma=0.9, potential_scale=0.5, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=1.0, Episodes=160 (10 Seeds)
+
+Seed 1: 29,012 PnL | 1,314 buys
+Seed 2: 30,818 PnL | 1,208 buys
+Seed 3: 33,344 PnL | 1,368 buys
+Seed 4: 28,299 PnL | 1,090 buys
+Seed 5: 28,239 PnL | 1,311 buys
+Seed 6: 31,385 PnL | 1,298 buys
+Seed 7: 25,284 PnL | 1,295 buys
+Seed 8: 28,503 PnL | 1,459 buys
+Seed 9: 29,295 PnL | 1,269 buys
+Seed 10: 31,146 PnL | 1,403 buys
+
+Stats:
+Mean: 29,532 ± 2,118
+Range: 25,284 – 33,344
+Average: ~30k (74% of 40k target)
+Best: ~33k (83% of target)
+Worst: ~25k (63% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=1.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=2.0, Episodes=160 (10 Seeds)
+
+Seed 1: 29,351 PnL | 1,478 buys
+Seed 2: 29,865 PnL | 1,311 buys
+Seed 3: 31,045 PnL | 1,337 buys
+Seed 4: 33,628 PnL | 1,288 buys
+Seed 5: 30,299 PnL | 1,288 buys
+Seed 6: 29,540 PnL | 1,181 buys
+Seed 7: 27,652 PnL | 1,194 buys
+Seed 8: 34,582 PnL | 1,610 buys
+Seed 9: 26,692 PnL | 1,208 buys
+Seed 10: 33,831 PnL | 1,466 buys
+
+Stats:
+Mean: 30,648 ± 2,508
+Range: 26,692 – 34,582
+Average: ~31k (77% of 40k target)
+Best: ~35k (86% of target)
+Worst: ~27k (67% of target)
+Variance: ±8% around mean
+
+Config:
+gamma=0.9, potential_scale=2.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=4.0, Episodes=160 (10 Seeds)
+
+Seed 1: 32,180 PnL | 1,523 buys
+Seed 2: 31,448 PnL | 1,316 buys
+Seed 3: 35,657 PnL | 1,439 buys
+Seed 4: 33,474 PnL | 1,296 buys
+Seed 5: 28,037 PnL | 1,334 buys
+Seed 6: 31,682 PnL | 1,287 buys
+Seed 7: 29,502 PnL | 1,365 buys
+Seed 8: 31,728 PnL | 1,491 buys
+Seed 9: 25,140 PnL | 1,107 buys
+Seed 10: 32,880 PnL | 1,528 buys
+
+Stats:
+Mean: 31,173 ± 2,811
+Range: 25,140 – 35,657
+Average: ~31k (78% of 40k target)
+Best: ~36k (89% of target)
+Worst: ~25k (63% of target)
+Variance: ±9% around mean
+
+Config:
+gamma=0.9, potential_scale=4.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=5.0, Episodes=160 (10 Seeds)
+
+Seed 1: 30,408 PnL | 1,450 buys
+Seed 2: 32,948 PnL | 1,370 buys
+Seed 3: 33,702 PnL | 1,289 buys
+Seed 4: 30,192 PnL | 1,215 buys
+Seed 5: 28,939 PnL | 1,346 buys
+Seed 6: 32,971 PnL | 1,301 buys
+Seed 7: 29,962 PnL | 1,256 buys
+Seed 8: 35,698 PnL | 1,748 buys
+Seed 9: 29,175 PnL | 1,254 buys
+Seed 10: 30,628 PnL | 1,517 buys
+
+Stats:
+Mean: 31,462 ± 2,114
+Range: 28,939 – 35,698
+Average: ~31k (79% of 40k target)
+Best: ~36k (89% of target)
+Worst: ~29k (72% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=5.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=6.0, Episodes=160 (10 Seeds)
+
+Seed 1: 35,860 PnL | 1,570 buys
+Seed 2: 33,353 PnL | 1,392 buys
+Seed 3: 32,718 PnL | 1,270 buys
+Seed 4: 32,908 PnL | 1,305 buys
+Seed 5: 29,782 PnL | 1,367 buys
+Seed 6: 34,246 PnL | 1,368 buys
+Seed 7: 30,148 PnL | 1,336 buys
+Seed 8: 35,174 PnL | 1,725 buys
+Seed 9: 32,194 PnL | 1,446 buys
+Seed 10: 38,411 PnL | 1,713 buys
+
+Stats:
+Mean: 33,479 ± 2,465
+Range: 29,782 – 38,411
+Average: ~33k (84% of 40k target)
+Best: ~38k (96% of target)
+Worst: ~30k (74% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=6.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=7.0, Episodes=160 (10 Seeds)
+
+Seed 1: 32,720 PnL | 1,523 buys
+Seed 2: 32,215 PnL | 1,477 buys
+Seed 3: 32,644 PnL | 1,292 buys
+Seed 4: 31,037 PnL | 1,309 buys
+Seed 5: 28,271 PnL | 1,418 buys
+Seed 6: 30,659 PnL | 1,304 buys
+Seed 7: 33,692 PnL | 1,495 buys
+Seed 8: 33,905 PnL | 1,647 buys
+Seed 9: 29,341 PnL | 1,271 buys
+Seed 10: 38,486 PnL | 1,722 buys
+
+Stats:
+Mean: 32,297 ± 2,690
+Range: 28,271 – 38,486
+Average: ~32k (81% of 40k target)
+Best: ~38k (96% of target)
+Worst: ~28k (71% of target)
+Variance: ±8% around mean
+
+Config:
+gamma=0.9, potential_scale=7.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=8.0, Episodes=160 (10 Seeds)
+
+Seed 1: 36,027 PnL | 1,589 buys
+Seed 2: 33,605 PnL | 1,341 buys
+Seed 3: 33,379 PnL | 1,395 buys
+Seed 4: 32,146 PnL | 1,351 buys
+Seed 5: 30,035 PnL | 1,418 buys
+Seed 6: 32,373 PnL | 1,411 buys
+Seed 7: 31,618 PnL | 1,458 buys
+Seed 8: 36,426 PnL | 1,751 buys
+Seed 9: 32,145 PnL | 1,350 buys
+Seed 10: 40,393 PnL | 1,645 buys
+
+Stats:
+Mean: 33,815 ± 2,863
+Range: 30,035 – 40,393
+Average: ~34k (85% of 40k target)
+Best: ~40k (101% of target)
+Worst: ~30k (75% of target)
+Variance: ±8% around mean
+
+Config:
+gamma=0.9, potential_scale=8.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=9.0, Episodes=160 (10 Seeds)
+
+Seed 1: 25,178 PnL | 1,559 buys
+Seed 2: 32,491 PnL | 1,432 buys
+Seed 3: 32,890 PnL | 1,330 buys
+Seed 4: 31,807 PnL | 1,370 buys
+Seed 5: 30,787 PnL | 1,360 buys
+Seed 6: 32,706 PnL | 1,409 buys
+Seed 7: 34,242 PnL | 1,558 buys
+Seed 8: 37,076 PnL | 1,820 buys
+Seed 9: 31,397 PnL | 1,304 buys
+Seed 10: 36,481 PnL | 1,677 buys
+
+Stats:
+Mean: 32,506 ± 3,135
+Range: 25,178 – 37,076
+Average: ~33k (81% of 40k target)
+Best: ~37k (93% of target)
+Worst: ~25k (63% of target)
+Variance: ±10% around mean
+
+Config:
+gamma=0.9, potential_scale=9.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=10.0, Episodes=160 (15 Seeds)
+
+Seed 1: 30,992 PnL | 1,582 buys
+Seed 1: 30,992 PnL | 1,582 buys
+Seed 2: 37,765 PnL | 1,680 buys
+Seed 2: 37,765 PnL | 1,680 buys
+Seed 3: 36,454 PnL | 1,468 buys
+Seed 3: 36,454 PnL | 1,468 buys
+Seed 4: 32,828 PnL | 1,355 buys
+Seed 4: 32,828 PnL | 1,355 buys
+Seed 5: 30,975 PnL | 1,447 buys
+Seed 5: 30,975 PnL | 1,447 buys
+Seed 6: 33,171 PnL | 1,391 buys
+Seed 7: 34,678 PnL | 1,590 buys
+Seed 8: 39,226 PnL | 1,866 buys
+Seed 9: 32,802 PnL | 1,350 buys
+Seed 10: 33,032 PnL | 1,644 buys
+
+Stats:
+Mean: 34,062 ± 2,712
+Range: 30,975 – 39,226
+Average: ~34k (85% of 40k target)
+Best: ~39k (98% of target)
+Worst: ~31k (77% of target)
+Variance: ±8% around mean
+
+Config:
+gamma=0.9, potential_scale=10.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=12.0, Episodes=160 (10 Seeds)
+
+Seed 1: 27,644 PnL | 1,680 buys
+Seed 2: 36,474 PnL | 1,602 buys
+Seed 3: 35,516 PnL | 1,490 buys
+Seed 4: 34,385 PnL | 1,459 buys
+Seed 5: 30,798 PnL | 1,469 buys
+Seed 6: 35,621 PnL | 1,446 buys
+Seed 7: 33,086 PnL | 1,498 buys
+Seed 8: 40,579 PnL | 1,884 buys
+Seed 9: 31,786 PnL | 1,315 buys
+Seed 10: 36,223 PnL | 1,741 buys
+
+Stats:
+Mean: 34,211 ± 3,397
+Range: 27,644 – 40,579
+Average: ~34k (86% of 40k target)
+Best: ~41k (101% of target)
+Worst: ~28k (69% of target)
+Variance: ±10% around mean
+
+Config:
+gamma=0.9, potential_scale=12.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=14.0, Episodes=160 (10 Seeds)
+
+Seed 1: 28,649 PnL | 1,671 buys
+Seed 2: 37,587 PnL | 1,637 buys
+Seed 3: 37,499 PnL | 1,533 buys
+Seed 4: 35,305 PnL | 1,523 buys
+Seed 5: 39,307 PnL | 1,852 buys
+Seed 6: 35,995 PnL | 1,443 buys
+Seed 7: 34,648 PnL | 1,499 buys
+Seed 8: 42,287 PnL | 2,032 buys
+Seed 9: 32,207 PnL | 1,439 buys
+Seed 10: 41,634 PnL | 1,792 buys
+
+Stats:
+Mean: 36,512 ± 3,938
+Range: 28,649 – 42,287
+Average: ~37k (91% of 40k target)
+Best: ~42k (106% of target)
+Worst: ~29k (72% of target)
+Variance: ±11% around mean
+
+Config:
+gamma=0.9, potential_scale=14.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=16.0, Episodes=160 (10 Seeds)
+
+Seed 1: 34,554 PnL | 1,604 buys
+Seed 2: 37,716 PnL | 1,834 buys
+Seed 3: 38,708 PnL | 1,696 buys
+Seed 4: 40,917 PnL | 1,775 buys
+Seed 5: 35,979 PnL | 1,679 buys
+Seed 6: 39,553 PnL | 1,617 buys
+Seed 7: 35,052 PnL | 1,604 buys
+Seed 8: 42,582 PnL | 1,977 buys
+Seed 9: 35,294 PnL | 1,593 buys
+Seed 10: 40,199 PnL | 1,761 buys
+
+Stats:
+Mean: 38,056 ± 2,632
+Range: 34,554 – 42,582
+Average: ~38k (95% of 40k target)
+Best: ~43k (106% of target)
+Worst: ~35k (86% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=16.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=18.0, Episodes=160 (10 Seeds)
+
+Seed 1: 35,509 PnL | 1,584 buys
+Seed 2: 38,600 PnL | 1,958 buys
+Seed 3: 37,718 PnL | 1,715 buys
+Seed 4: 38,457 PnL | 1,738 buys
+Seed 5: 34,891 PnL | 1,639 buys
+Seed 6: 37,219 PnL | 1,553 buys
+Seed 7: 36,826 PnL | 1,601 buys
+Seed 8: 42,013 PnL | 2,046 buys
+Seed 9: 33,944 PnL | 1,674 buys
+Seed 10: 41,018 PnL | 1,855 buys
+
+Stats:
+Mean: 37,620 ± 2,423
+Range: 33,944 – 42,013
+Average: ~38k (94% of 40k target)
+Best: ~42k (105% of target)
+Worst: ~34k (85% of target)
+Variance: ±6% around mean
+
+Config:
+gamma=0.9, potential_scale=18.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=20.0, Episodes=160 (10 Seeds)
+
+Seed 1: 35,278 PnL | 1,683 buys
+Seed 2: 39,395 PnL | 1,862 buys
+Seed 3: 38,472 PnL | 1,720 buys
+Seed 4: 40,713 PnL | 1,868 buys
+Seed 5: 35,491 PnL | 1,605 buys
+Seed 6: 41,897 PnL | 1,791 buys
+Seed 7: 36,622 PnL | 1,646 buys
+Seed 8: 45,575 PnL | 2,095 buys
+Seed 9: 33,546 PnL | 1,647 buys
+Seed 10: 35,612 PnL | 1,943 buys
+
+Stats:
+Mean: 38,260 ± 3,501
+Range: 33,546 – 45,575
+Average: ~38k (96% of 40k target)
+Best: ~46k (114% of target)
+Worst: ~34k (84% of target)
+Variance: ±9% around mean
+
+Config:
+gamma=0.9, potential_scale=20.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=22.0, Episodes=160 (10 Seeds)
+
+Seed 1: 35,433 PnL | 1,706 buys
+Seed 2: 37,909 PnL | 1,815 buys
+Seed 3: 43,928 PnL | 1,800 buys
+Seed 4: 37,721 PnL | 1,755 buys
+Seed 5: 40,994 PnL | 1,999 buys
+Seed 6: 40,542 PnL | 1,755 buys
+Seed 7: 35,999 PnL | 1,865 buys
+Seed 8: 50,746 PnL | 2,185 buys
+Seed 9: 34,451 PnL | 1,603 buys
+Seed 10: 43,558 PnL | 1,927 buys
+
+Stats:
+Mean: 40,128 ± 4,711
+Range: 34,451 – 50,746
+Average: ~40k (100% of 40k target)
+Best: ~51k (127% of target)
+Worst: ~34k (86% of target)
+Variance: ±12% around mean
+
+Config:
+gamma=0.9, potential_scale=22.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=24.0, Episodes=160 (10 Seeds)
+
+Seed 1: 41,678 PnL | 1,945 buys
+Seed 2: 39,189 PnL | 1,841 buys
+Seed 3: 41,979 PnL | 2,000 buys
+Seed 4: 41,630 PnL | 1,884 buys
+Seed 5: 39,485 PnL | 1,929 buys
+Seed 6: 40,768 PnL | 2,018 buys
+Seed 7: 39,322 PnL | 1,902 buys
+Seed 8: 48,404 PnL | 2,239 buys
+Seed 9: 37,381 PnL | 1,855 buys
+Seed 10: 44,586 PnL | 2,084 buys
+
+Stats:
+Mean: 41,442 ± 2,985
+Range: 37,381 – 48,404
+Average: ~41k (104% of 40k target)
+Best: ~48k (121% of target)
+Worst: ~37k (93% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=24.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=26.0, Episodes=160 (10 Seeds)
+
+Seed 1: 37,466 PnL | 1,908 buys
+Seed 2: 40,611 PnL | 1,914 buys
+Seed 3: 39,179 PnL | 1,895 buys
+Seed 4: 43,066 PnL | 2,048 buys
+Seed 5: 43,777 PnL | 1,965 buys
+Seed 6: 41,684 PnL | 1,865 buys
+Seed 7: 47,121 PnL | 2,289 buys
+Seed 8: 45,594 PnL | 2,277 buys
+Seed 9: 38,848 PnL | 1,879 buys
+Seed 10: 42,837 PnL | 2,116 buys
+
+Stats:
+Mean: 42,018 ± 2,909
+Range: 37,466 – 47,121
+Average: ~42k (105% of 40k target)
+Best: ~47k (118% of target)
+Worst: ~37k (94% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=26.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=28.0, Episodes=160 (10 Seeds)
+
+Seed 1: 38,269 PnL | 2,049 buys
+Seed 2: 43,499 PnL | 2,031 buys
+Seed 3: 41,088 PnL | 1,950 buys
+Seed 4: 41,845 PnL | 1,935 buys
+Seed 5: 43,447 PnL | 2,194 buys
+Seed 6: 44,815 PnL | 2,132 buys
+Seed 7: 44,055 PnL | 2,194 buys
+Seed 8: 45,515 PnL | 2,383 buys
+Seed 9: 45,353 PnL | 2,141 buys
+Seed 10: 49,298 PnL | 2,189 buys
+
+Stats:
+Mean: 43,718 ± 2,803
+Range: 38,269 – 49,298
+Average: ~44k (109% of 40k target)
+Best: ~49k (123% of target)
+Worst: ~38k (96% of target)
+Variance: ±6% around mean
+
+Config:
+gamma=0.9, potential_scale=28.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=30.0, Episodes=160 (10 Seeds)
+
+Seed 1: 44,253 PnL | 2,053 buys
+Seed 2: 41,017 PnL | 2,090 buys
+Seed 3: 41,565 PnL | 2,035 buys
+Seed 4: 42,487 PnL | 2,027 buys
+Seed 5: 42,171 PnL | 2,217 buys
+Seed 6: 47,811 PnL | 2,192 buys
+Seed 7: 47,604 PnL | 2,500 buys
+Seed 8: 42,365 PnL | 2,183 buys
+Seed 9: 40,508 PnL | 1,999 buys
+Seed 10: 50,450 PnL | 2,347 buys
+
+Stats:
+Mean: 44,023 ± 3,233
+Range: 40,508 – 50,450
+Average: ~44k (110% of 40k target)
+Best: ~50k (126% of target)
+Worst: ~41k (101% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=30.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=40.0, Episodes=160 (10 Seeds)
+
+Seed 1: 51,276 PnL | 2,669 buys
+Seed 2: 46,069 PnL | 2,170 buys
+Seed 3: 44,054 PnL | 2,408 buys
+Seed 4: 48,560 PnL | 2,480 buys
+Seed 5: 46,895 PnL | 2,440 buys
+Seed 6: 49,631 PnL | 2,447 buys
+Seed 7: 49,052 PnL | 2,553 buys
+Seed 8: 52,050 PnL | 2,445 buys
+Seed 9: 49,626 PnL | 2,640 buys
+Seed 10: 54,643 PnL | 2,567 buys
+
+Stats:
+Mean: 49,186 ± 2,906
+Range: 44,054 – 54,643
+Average: ~49k (123% of 40k target)
+Best: ~55k (137% of target)
+Worst: ~44k (110% of target)
+Variance: ±6% around mean
+
+Config:
+gamma=0.9, potential_scale=40.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=50.0, Episodes=160 (10 Seeds)
+
+Seed 1: 52,638 PnL | 2,905 buys
+Seed 2: 52,798 PnL | 2,577 buys
+Seed 3: 50,503 PnL | 2,399 buys
+Seed 4: 53,150 PnL | 2,701 buys
+Seed 5: 50,735 PnL | 2,688 buys
+Seed 6: 54,078 PnL | 2,609 buys
+Seed 7: 51,794 PnL | 2,914 buys
+Seed 8: 51,712 PnL | 2,487 buys
+Seed 9: 56,464 PnL | 2,880 buys
+Seed 10: 52,027 PnL | 2,601 buys
+
+Stats:
+Mean: 52,590 ± 1,646
+Range: 50,503 – 56,464
+Average: ~53k (131% of 40k target)
+Best: ~56k (141% of target)
+Worst: ~51k (126% of target)
+Variance: ±3% around mean
+
+Config:
+gamma=0.9, potential_scale=50.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=60.0, Episodes=160 (10 Seeds)
+
+Seed 1: 49,708 PnL | 2,726 buys
+Seed 2: 44,399 PnL | 2,575 buys
+Seed 3: 43,426 PnL | 2,473 buys
+Seed 4: 49,427 PnL | 2,628 buys
+Seed 5: 47,534 PnL | 2,646 buys
+Seed 6: 50,825 PnL | 2,762 buys
+Seed 7: 51,243 PnL | 3,061 buys
+Seed 8: 51,161 PnL | 2,642 buys
+Seed 9: 52,422 PnL | 2,814 buys
+Seed 10: 54,014 PnL | 2,698 buys
+
+Stats:
+Mean: 49,416 ± 3,213
+Range: 43,426 – 54,014
+Average: ~49k (124% of 40k target)
+Best: ~54k (135% of target)
+Worst: ~43k (109% of target)
+Variance: ±7% around mean
+
+Config:
+gamma=0.9, potential_scale=60.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=70.0, Episodes=160 (10 Seeds)
+
+Seed 1: 48,999 PnL | 2,824 buys
+Seed 2: 42,240 PnL | 2,521 buys
+Seed 3: 44,985 PnL | 2,373 buys
+Seed 4: 44,428 PnL | 2,439 buys
+Seed 5: 48,623 PnL | 2,534 buys
+Seed 6: 50,884 PnL | 2,750 buys
+Seed 7: 45,714 PnL | 2,804 buys
+Seed 8: 47,328 PnL | 2,602 buys
+Seed 9: 47,511 PnL | 2,511 buys
+Seed 10: 49,822 PnL | 2,749 buys
+
+Stats:
+Mean: 47,053 ± 2,549
+Range: 42,240 – 50,884
+Average: ~47k (118% of 40k target)
+Best: ~51k (127% of target)
+Worst: ~42k (106% of target)
+Variance: ±5% around mean
+
+Config:
+gamma=0.9, potential_scale=70.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=80.0, Episodes=160 (10 Seeds)
+
+Seed 1: 37,560 PnL | 2,366 buys
+Seed 2: 33,191 PnL | 2,410 buys
+Seed 3: 29,088 PnL | 2,020 buys
+Seed 4: 39,502 PnL | 2,557 buys
+Seed 5: 32,931 PnL | 2,512 buys
+Seed 6: 42,527 PnL | 2,706 buys
+Seed 7: 33,179 PnL | 2,479 buys
+Seed 8: 43,826 PnL | 2,439 buys
+Seed 9: 43,270 PnL | 2,497 buys
+Seed 10: 17,861 PnL | 2,630 buys
+
+Stats:
+Mean: 35,294 ± 7,540
+Range: 17,861 – 43,826
+Average: ~35k (88% of 40k target)
+Best: ~44k (110% of target)
+Worst: ~18k (45% of target)
+Variance: ±21% around mean
+
+Config:
+gamma=0.9, potential_scale=80.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=90.0, Episodes=160 (10 Seeds)
+
+Seed 1: 19,767 PnL | 2,292 buys
+Seed 2: 20,206 PnL | 3,451 buys
+Seed 3: 20,849 PnL | 1,995 buys
+Seed 4: 20,650 PnL | 2,609 buys
+Seed 5: 21,597 PnL | 2,202 buys
+Seed 6: 24,269 PnL | 2,682 buys
+Seed 7: 20,417 PnL | 2,991 buys
+Seed 8: 23,693 PnL | 2,092 buys
+Seed 9: 33,090 PnL | 3,038 buys
+Seed 10: 14,616 PnL | 2,041 buys
+
+Stats:
+Mean: 21,915 ± 4,466
+Range: 14,616 – 33,090
+Average: ~22k (55% of 40k target)
+Best: ~33k (83% of target)
+Worst: ~15k (37% of target)
+Variance: ±20% around mean
+
+Config:
+gamma=0.9, potential_scale=90.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
+Results: Scale=100.0, Episodes=160 (10 Seeds)
+
+Seed 1: 19,388 PnL | 2,386 buys
+Seed 2: 16,830 PnL | 3,555 buys
+Seed 3: 9,891 PnL | 2,891 buys
+Seed 4: 16,909 PnL | 2,899 buys
+Seed 5: 12,922 PnL | 3,452 buys
+Seed 6: 14,541 PnL | 3,567 buys
+Seed 7: 16,212 PnL | 3,392 buys
+Seed 8: 9,573 PnL | 3,469 buys
+Seed 9: 13,132 PnL | 2,228 buys
+Seed 10: 9,709 PnL | 2,883 buys
+
+Stats:
+Mean: 13,911 ± 3,277
+Range: 9,573 – 19,388
+Average: ~14k (35% of 40k target)
+Best: ~19k (48% of target)
+Worst: ~10k (24% of target)
+Variance: ±24% around mean
+
+Config:
+gamma=0.9, potential_scale=100.0, episodes=160, reward_shaping=True
+
+------------------------------------------------------------
+
