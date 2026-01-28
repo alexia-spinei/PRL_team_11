@@ -137,7 +137,7 @@ class QConfig:
     epsilon: float = 1.0
     epsilon_decay: float = 0.995
     epsilon_min: float = 0.01
-    episodes: int = 500
+    episodes: int = 250
 
     # Discretization
     n_storage: int = 6
@@ -154,8 +154,8 @@ class QConfig:
     # When buying: gain storage → add positive credit (reduces cost)
     # When selling: lose storage → add negative credit (reduces profit)
     # This flattens the reward landscape and works even with gamma=0
-    reward_shaping_enabled: bool = False
-    potential_scale_factor: float = 10.0  # multiplier for storage_change × price
+    reward_shaping_enabled: bool = True
+    potential_scale_factor: float = 50.0  # multiplier for storage_change × price
     use_current_price: bool = (
         True  # if True, use current price; if False, use normalized average
     )
