@@ -1,0 +1,23 @@
+{
+  "alpha": 0.05,
+  "gamma": 0.93,
+  "epsilon": 1.0,
+  "epsilon_decay": 0.995,
+  "epsilon_min": 0.01,
+  "episodes": 250,
+  "n_storage": 6,
+  "n_price": 6,
+  "price_window": 168,
+  "n_hour_period": 5,
+  "n_weekend": 2,
+  "n_seasons": 4,
+  "n_actions": 3,
+  "reward_shaping_enabled": true,
+  "potential_scale_factor": 50.0,
+  "use_current_price": true,
+  "seed": 5,
+  "track_visits": true,
+  "label": "bestmodel2_s50_g0.93_a0.05_ep250_seed5",
+  "eval_every": 20,
+  "track_td_error": true
+}

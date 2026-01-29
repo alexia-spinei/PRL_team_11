@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "description": "potential-based: scale=50.0, price_type=current",
+  "parameters": {
+    "potential_scale_factor": 50.0,
+    "use_current_price": true
+  },
+  "code_snippet": "# Potential-based reward shaping\nif config.reward_shaping_enabled:\n    old_storage = obs[0]\n    new_storage = obs2[0] if not (terminated or truncated) else old_storage\n    storage_change = new_storage - old_storage\n    price_factor = obs[1] if config.use_current_price else 0.5\n    potential_reward = storage_change * price_factor * config.potential_scale_factor\n    reward += potential_reward"
+}
