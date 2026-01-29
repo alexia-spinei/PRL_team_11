@@ -133,11 +133,11 @@ class QConfig:
 
     # Hyperparameters
     alpha: float = 0.1
-    gamma: float = 0.9
+    gamma: float = 0.99
     epsilon: float = 1.0
     epsilon_decay: float = 0.995
     epsilon_min: float = 0.01
-    episodes: int = 250
+    episodes: int = 600
 
     # Discretization
     n_storage: int = 6

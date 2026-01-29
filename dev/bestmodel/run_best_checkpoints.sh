@@ -8,12 +8,14 @@ cd "$(dirname "$0")/../.."
 # FILL IN THE 3 SWEEP RUN DIRECTORIES HERE (from results/qlearning/)
 # These are the directory names, e.g., "20250128_143022_s50.0_seed1"
 # ============================================================
-SWEEP_RUN_1="FILL_IN_DIRECTORY_NAME_1"
-SWEEP_RUN_2="FILL_IN_DIRECTORY_NAME_2"
-SWEEP_RUN_3="FILL_IN_DIRECTORY_NAME_3"
-# ============================================================
+SWEEP_RUN_1="20260129_002515_bestmodel_seed4"
+SWEEP_RUN_2="20260129_002515_bestmodel_seed7"
+SWEEP_RUN_3="20260129_002515_bestmodel_seed9"
+
 
 QLEARNING_DIR="results/qlearning"
+config_path="$QLEARNING_DIR/$run_dir/config.json"
+
 OUTPUT_DIR="results/best_checkpoints"
 mkdir -p "$OUTPUT_DIR"
 

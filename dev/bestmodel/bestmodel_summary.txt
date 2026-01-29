@@ -1,0 +1,40 @@
+======================================================================
+Best Model Robustness Analysis
+Total runs: 1 seeds
+======================================================================
+
+Configuration:
+  gamma=0.9, alpha=0.1
+  episodes=160, epsilon_decay=0.995
+  reward_shaping=True
+  potential_scale=50.0
+
+----------------------------------------------------------------------
+
+Per-Seed Results (Best Validation Checkpoint):
+
+Seed     Best Val PnL   Best @ Episode
+----------------------------------------
+4              54,156              120
+
+----------------------------------------------------------------------
+
+Aggregate Statistics (Best Validation PnL):
+  Mean:         54,156
+  Std:               0
+  Min:          54,156
+  Max:          54,156
+  Median:       54,156
+
+----------------------------------------------------------------------
+
+Robustness Assessment:
+  Coefficient of Variation: 0.0%
+  --> Low variance: Model is robust across seeds
+
+----------------------------------------------------------------------
+
+Q-tables for submission are in:
+  /Users/claudia/VU/Project_Reinforcement_Learning/PRL_team_11/results/best_checkpoints/
+
+======================================================================

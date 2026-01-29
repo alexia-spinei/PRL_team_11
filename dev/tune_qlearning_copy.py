@@ -23,7 +23,7 @@ from matplotlib.patches import Rectangle
 import seaborn as sns
 
 # IMPORTANT: change this import to your actual module name
-from qtable_feats_potential import *
+from qtable_feats_potential_copy import *
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 RESULTS_DIR = PROJECT_ROOT / "results" / "qlearning_tuning"
@@ -476,7 +476,7 @@ def main():
         seed=42,  # Will be overridden
         track_visits=False,
         track_td_error=True,
-        reward_shaping_enabled=False,
+        reward_shaping_enabled=True,
         # alpha_decay=0.9995,  # UNCOMMENT if you have this parameter
     )
 
